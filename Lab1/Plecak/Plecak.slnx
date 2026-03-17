@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="GUI/GUI.csproj" Id="84baa16b-4aa9-4906-b0d2-9030b5b8d2f0" />
+  <Project Path="Plecak/Plecak.csproj" />
+  <Project Path="UnitTest/UnitTest.csproj" />
+</Solution>
