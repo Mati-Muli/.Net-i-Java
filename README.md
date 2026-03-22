@@ -22,4 +22,4 @@ Zawarte w pliku [Test1.cs](Lab1/Plecak/UnitTest/Test1.cs), sprawdzają poprawne 
 
 ## GUI
 
-Całość interfejsu została zaprojektowana przy użyciu Windows Froms App.
+Całość interfejsu została zaprojektowana przy użyciu Windows Forms App.
