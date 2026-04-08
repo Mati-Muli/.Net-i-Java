@@ -1,6 +1,7 @@
 # Lab 1 - problem plecakowy
 <details>
 <summary>Opis zadania</summary>
+  
 ## Wymagania zadania:
 - implementacja problemu plecakowego w języku C#
 - rozdzielenie poszczególnych klas na osobne pliki, dla lepszej czytelności i struktury kodu
