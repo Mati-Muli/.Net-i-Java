@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:API.Models"
+             x:Class="Maui_API.MainPage"
+             BackgroundColor="Black">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Pogodynka" 
+               FontSize="24" 
+               HorizontalOptions="Center" 
+               TextColor="MediumPurple" 
+               FontAttributes="Bold" />
+
+        <Entry x:Name="CityEntry" 
+               Placeholder="Wpisz miasto (np. Wroclaw)" />
+
+        <Button Text="Pobierz i Zapisz" 
+                Clicked="OnGetWeatherClicked" 
+                BackgroundColor="MediumPurple" 
+                TextColor="White" />
+
+        <Label Text="Dane z bazy (pełny format):" 
+               FontAttributes="Italic" 
+               TextColor="Gray" />
+
+        <ListView x:Name="WeatherListView" 
+                  HasUnevenRows="True"
+                  SeparatorColor="LightGray">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:ToDo">
+                    <TextCell Text="{Binding .}" 
+                              TextColor="White"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>
