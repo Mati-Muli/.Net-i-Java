@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="API/API.csproj" />
+  <Project Path="Maui_API/Maui_API.csproj" Id="538e0be5-efaf-4b5d-bc1e-94358fc8a48d">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>
