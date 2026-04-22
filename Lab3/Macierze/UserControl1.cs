@@ -39,7 +39,7 @@ namespace Macierze
 
             listBox1.Items.Add($"--- WYNIKI (średnia z 10 prób) ---");
             listBox1.Items.Add($"Rozmiar macierzy: {size}x{size}");
-            listBox1.Items.Add($"Czas sekwencyjny (1 wątek): {results.seq} ms");
+            listBox1.Items.Add($"Czas sekwencyjny: {results.seq} ms");
             listBox1.Items.Add($"Czas równoległy ({threads} wątki): {results.par} ms");
             listBox1.Items.Add($"Uzyskane przyśpieszenie: {speedup:F2}x");
 

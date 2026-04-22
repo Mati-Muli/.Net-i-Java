@@ -22,7 +22,7 @@ namespace Macierze
 
             button1.Enabled = false;
             listBox1.Items.Clear();
-            listBox1.Items.Add("Trwają pomiary porównawcze (po 10 prób)...");
+            listBox1.Items.Add("Trwają obliczenia (10 prób)...");
 
             var results = await Task.Run(() =>
             {

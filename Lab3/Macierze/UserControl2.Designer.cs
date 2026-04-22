@@ -41,8 +41,8 @@
             // numSize
             // 
             numSize.Location = new Point(89, 218);
-            numSize.Margin = new Padding(6, 6, 6, 6);
-            numSize.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            numSize.Margin = new Padding(6);
+            numSize.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             numSize.Minimum = new decimal(new int[] { 100, 0, 0, 0 });
             numSize.Name = "numSize";
             numSize.Size = new Size(223, 39);
@@ -52,7 +52,7 @@
             // numThreads
             // 
             numThreads.Location = new Point(89, 414);
-            numThreads.Margin = new Padding(6, 6, 6, 6);
+            numThreads.Margin = new Padding(6);
             numThreads.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numThreads.Name = "numThreads";
             numThreads.Size = new Size(223, 39);
@@ -84,7 +84,7 @@
             // button1
             // 
             button1.Location = new Point(89, 557);
-            button1.Margin = new Padding(6, 6, 6, 6);
+            button1.Margin = new Padding(6);
             button1.Name = "button1";
             button1.Size = new Size(223, 87);
             button1.TabIndex = 5;
@@ -96,7 +96,7 @@
             // 
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(501, 70);
-            listBox1.Margin = new Padding(6, 6, 6, 6);
+            listBox1.Margin = new Padding(6);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(1610, 1316);
             listBox1.TabIndex = 6;
@@ -111,7 +111,7 @@
             Controls.Add(label1);
             Controls.Add(numThreads);
             Controls.Add(numSize);
-            Margin = new Padding(6, 6, 6, 6);
+            Margin = new Padding(6);
             Name = "UserControl2";
             Size = new Size(2151, 1427);
             Load += UserControl2_Load;
