@@ -36,50 +36,55 @@
             // 
             // button1
             // 
-            button1.Location = new Point(12, 23);
+            button1.Location = new Point(22, 49);
+            button1.Margin = new Padding(6, 6, 6, 6);
             button1.Name = "button1";
-            button1.Size = new Size(241, 70);
+            button1.Size = new Size(448, 149);
             button1.TabIndex = 0;
-            button1.Text = "button1";
+            button1.Text = "Zadanie 1";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // panel1
             // 
-            panel1.Location = new Point(259, 12);
+            panel1.Location = new Point(481, 26);
+            panel1.Margin = new Padding(6, 6, 6, 6);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1158, 669);
+            panel1.Size = new Size(2151, 1427);
             panel1.TabIndex = 1;
             // 
             // button2
             // 
-            button2.Location = new Point(12, 114);
+            button2.Location = new Point(22, 243);
+            button2.Margin = new Padding(6, 6, 6, 6);
             button2.Name = "button2";
-            button2.Size = new Size(241, 73);
+            button2.Size = new Size(448, 156);
             button2.TabIndex = 2;
-            button2.Text = "button2";
+            button2.Text = "Zadanie 2";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(12, 213);
+            button3.Location = new Point(22, 454);
+            button3.Margin = new Padding(6, 6, 6, 6);
             button3.Name = "button3";
-            button3.Size = new Size(241, 71);
+            button3.Size = new Size(448, 151);
             button3.TabIndex = 3;
-            button3.Text = "button3";
+            button3.Text = "Zadanie 3";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1429, 693);
+            ClientSize = new Size(2654, 1478);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(panel1);
             Controls.Add(button1);
+            Margin = new Padding(6, 6, 6, 6);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);

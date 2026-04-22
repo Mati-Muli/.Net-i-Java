@@ -82,8 +82,9 @@ namespace Macierze
                 watch.Restart();
                 for (int t = 0; t < threads; t++)
                 {
-                    int startRow = t * rowsPerThread;
-                    int endRow = (t == threads - 1) ? size : (t + 1) * rowsPerThread;
+                    int threadIdx = t;
+                    int startRow = threadIdx * rowsPerThread;
+                    int endRow = (threadIdx == threads - 1) ? size : (threadIdx + 1) * rowsPerThread;
                     Threads[t] = new Thread(() =>
                     {
                         for (int i = startRow; i < endRow; i++)
@@ -107,10 +108,9 @@ namespace Macierze
                 }
                 watch.Stop();
 
-                time += (double)watch.ElapsedTicks * 1000 / System.Diagnostics.Stopwatch.Frequency;
+                time += (double)watch.ElapsedTicks * 1000 / Stopwatch.Frequency;
             }
-
-            return (long)time / reps;
+            return (long)time/reps;
         }
     }
         }

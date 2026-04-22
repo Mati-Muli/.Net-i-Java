@@ -40,47 +40,53 @@
             // 
             // numSize
             // 
-            numSize.Location = new Point(44, 105);
+            numSize.Location = new Point(89, 218);
+            numSize.Margin = new Padding(6, 6, 6, 6);
             numSize.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
             numSize.Minimum = new decimal(new int[] { 100, 0, 0, 0 });
             numSize.Name = "numSize";
-            numSize.Size = new Size(120, 23);
+            numSize.Size = new Size(223, 39);
             numSize.TabIndex = 0;
             numSize.Value = new decimal(new int[] { 100, 0, 0, 0 });
             // 
             // numThreads
             // 
-            numThreads.Location = new Point(44, 169);
+            numThreads.Location = new Point(89, 414);
+            numThreads.Margin = new Padding(6, 6, 6, 6);
             numThreads.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numThreads.Name = "numThreads";
-            numThreads.Size = new Size(120, 23);
+            numThreads.Size = new Size(223, 39);
             numThreads.TabIndex = 1;
             numThreads.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(44, 87);
+            label1.Location = new Point(82, 180);
+            label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
-            label1.Size = new Size(100, 15);
+            label1.Size = new Size(200, 32);
             label1.TabIndex = 2;
             label1.Text = "Rozmiar macierzy";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(44, 151);
+            label2.Location = new Point(82, 376);
+            label2.Margin = new Padding(6, 0, 6, 0);
             label2.Name = "label2";
-            label2.Size = new Size(75, 15);
+            label2.Size = new Size(148, 32);
             label2.TabIndex = 3;
             label2.Text = "Ilość wątków";
             label2.Click += label2_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(44, 231);
+            button1.Location = new Point(89, 557);
+            button1.Margin = new Padding(6, 6, 6, 6);
             button1.Name = "button1";
-            button1.Size = new Size(120, 41);
+            button1.Size = new Size(223, 87);
             button1.TabIndex = 5;
             button1.Text = "Start";
             button1.UseVisualStyleBackColor = true;
@@ -89,14 +95,15 @@
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(227, 42);
+            listBox1.Location = new Point(501, 70);
+            listBox1.Margin = new Padding(6, 6, 6, 6);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(918, 619);
+            listBox1.Size = new Size(1610, 1316);
             listBox1.TabIndex = 6;
             // 
             // UserControl2
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(listBox1);
             Controls.Add(button1);
@@ -104,8 +111,9 @@
             Controls.Add(label1);
             Controls.Add(numThreads);
             Controls.Add(numSize);
+            Margin = new Padding(6, 6, 6, 6);
             Name = "UserControl2";
-            Size = new Size(1158, 669);
+            Size = new Size(2151, 1427);
             Load += UserControl2_Load;
             ((System.ComponentModel.ISupportInitialize)numSize).EndInit();
             ((System.ComponentModel.ISupportInitialize)numThreads).EndInit();
