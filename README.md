@@ -55,3 +55,27 @@ Całość interfejsu została zaprojektowana przy użyciu Windows Forms App.
 - deserializacja odpowiedzi JSON,
 - możliwość wyświetlenia bazy danych, dodania oraz usunięcia wskazanego rekordu.
 </details>
+
+# Lab 3 - Obliczenia wielowątkowe
+<details>
+  <summary> Opis zadania </summary>
+  Całośc aplikacji została zrobiona w Microsoft Formsach. Dzięki użyciu UserControlów, wszystkie 3 zadania są zawarte w jednym projekcie w jednej aplikacji okienkowej, gdzie wybór zadania jest wyraźnie widoczny po lewej stronie aplikacji.
+  
+  ## Wymagania zadania:
+  - użycie biblioteki Parrarel w celu porównania szybkości wykonywania obliczeń - sekwencyjnie a wielowątkowo,
+  - porównanie szybkości wykonywania obliczeń między biblioteką Parrarel a własnoręcznie utworzonymi wątkami,
+  - wykorzystanie dowolnej metody wielowątkowości w celu zrobiania aplikacji, pozwalającej na przetwaerzanie obrazów (nakładanie filtrów)
+
+  ## Podział plików:
+  - [Matrix.cs](Lab3/Macierze/Matrix.cs) - klasa odpowiadająca za obliczenia wykonywane na macierzach - posiada funkcję mnożenia wykonaną na bibliotece Parrarel oraz przy użyciu własnoręcznie wydzielonych wątków,
+  - [Images.cs](Lab3/Macierze/Images.cs) - klasa odpowiadająca za przetwarzanie obrazów do zadania 3 - zostały zdefiniowane 4 filtry: Negatyw, odcienie szarości, czarno-biały, tylko odcienie zielonego,
+
+  ## Funkcjonalność:
+  - kompaktowość - wszystkie 3 zadania w jednej aplikacji,
+  - szybkie przetwarzanie obrazów,
+  - ręczny dobór ilości przydzielonych wątków do zadania 1 oraz 2,
+  - ręczny dobór wielkości macierzy dla zadania 1 oraz 2.
+
+  ## Porównanie wyników:
+  
+</details>
