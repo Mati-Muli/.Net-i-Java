@@ -1,0 +1,47 @@
+﻿@page "/movies"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using BlazorApp4.Data
+@rendermode InteractiveServer
+@implements IAsyncDisposable
+@inject IDbContextFactory<BlazorApp4.Data.ApplicationDbContext> DbFactory
+
+<PageTitle>Katalog Filmów</PageTitle>
+
+<h1>Katalog Filmów</h1>
+
+<p><a href="movies/create" class="btn btn-success">Dodaj Nowy</a></p>
+
+@if (moviesQuery is null)
+{
+    <p>Ładowanie...</p>
+}
+else
+{
+    <QuickGrid Class="table table-striped" Items="moviesQuery">
+        <PropertyColumn Property="m => m.Title" Sortable="true" Title="Tytuł" />
+        <PropertyColumn Property="m => m.ReleaseDate" Sortable="true" Title="Premiera" />
+        <PropertyColumn Property="m => m.Rate" Sortable="true" Title="Średnia Ocena" Format="F2" />
+
+        <TemplateColumn Context="movie" Title="Akcje">
+            <a href="@($"/movies/details?id={movie.Id}")" class="btn btn-sm btn-info">Szczegóły / Oceń</a>
+            <AuthorizeView>
+                <a href="@($"/movies/edit?id={movie.Id}")" class="btn btn-sm btn-warning">Edytuj</a>
+                <a href="@($"/movies/delete?id={movie.Id}")" class="btn btn-sm btn-danger">Usuń</a>
+            </AuthorizeView>
+        </TemplateColumn>
+    </QuickGrid>
+}
+
+@code {
+    private ApplicationDbContext context = default!;
+    private IQueryable<Movie>? moviesQuery;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+        moviesQuery = context.Movie.AsQueryable();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

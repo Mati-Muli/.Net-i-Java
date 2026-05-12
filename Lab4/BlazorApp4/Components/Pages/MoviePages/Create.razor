@@ -1,0 +1,59 @@
+﻿@page "/movies/create"
+@using Microsoft.EntityFrameworkCore
+@inject IDbContextFactory<BlazorApp4.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<PageTitle>Dodaj Film</PageTitle>
+
+<h1>Dodaj nowy film</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Movie" OnValidSubmit="AddMovie" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Tytuł:</label>
+                <InputText id="title" @bind-Value="Movie.Title" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Opis:</label>
+                <InputTextArea id="description" @bind-Value="Movie.Description" class="form-control" rows="3" />
+            </div>
+            <div class="mb-3">
+                <label for="releasedate" class="form-label">Data wydania:</label>
+                <InputDate id="releasedate" @bind-Value="Movie.ReleaseDate" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="imageurl" class="form-label">Adres URL plakatu:</label>
+                <InputText id="imageurl" @bind-Value="Movie.ImageUrl" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="youtubeurl" class="form-label">Link do zwiastuna YouTube:</label>
+                <InputText id="youtubeurl" @bind-Value="Movie.YouTubeUrl" class="form-control" placeholder="https://www.youtube.com/watch?v=..." />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Dodaj film</button>
+            <a href="/movies" class="btn btn-link">Powrót</a>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Movie Movie { get; set; } = new();
+
+    private async Task AddMovie()
+    {
+        using var context = DbFactory.CreateDbContext();
+        Movie.Rate = 0;
+        Movie.VoteCount = 0;
+
+        context.Movie.Add(Movie);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/movies");
+    }
+}

@@ -1,7 +1,10 @@
 using BlazorApp1.Components;
 using Microsoft.AspNetCore.Authentication.Certificate;
+using Microsoft.Extensions.ML;
+using BlazorApp1;
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddPredictionEnginePool<MLModel.ModelInput, MLModel.ModelOutput>()
+    .FromFile("MLModel.mlnet");
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddAuthentication(

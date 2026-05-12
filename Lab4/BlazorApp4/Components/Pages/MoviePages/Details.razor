@@ -1,0 +1,153 @@
+﻿@page "/movies/details"
+@using Microsoft.EntityFrameworkCore
+@using BlazorApp4.Data
+@rendermode InteractiveServer
+@inject IDbContextFactory<BlazorApp4.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
+
+<PageTitle>Szczegóły</PageTitle>
+
+@if (movie is null)
+{
+    <p><em>Ładowanie danych...</em></p>
+}
+else
+{
+
+    <div class="mt-4 mb-4">
+        <a href="/movies" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Powrót do listy
+        </a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(movie.YouTubeUrl))
+    {
+        <div class="mb-2">
+            <h4 class="mb-3"><i class="bi bi-play-btn"></i> Zwiastun filmu</h4>
+            <div class="ratio ratio-16x9 shadow rounded mx-auto" style="max-width: 850px;">
+                <iframe src="@GetEmbedUrl(movie.YouTubeUrl)"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    }
+
+    <div class="container shadow-sm p-4 rounded bg-white">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                @if (!string.IsNullOrEmpty(movie.ImageUrl))
+                {
+                    <img src="@movie.ImageUrl" class="img-fluid rounded shadow" alt="Plakat" style="max-height: 450px;" />
+                }
+            </div>
+            <div class="col-md-8">
+                <h2>@movie.Title</h2>
+                <p class="text-muted">Premiera: @movie.ReleaseDate?.ToShortDateString()</p>
+                <hr />
+                <p>@movie.Description</p>
+
+                <h4 class="text-primary">
+                    Średnia ocena: @(movie.Rate?.ToString("F2") ?? "0.00")
+                    <small class="text-muted">(Głosów: @movie.VoteCount)</small>
+                </h4>
+
+                <AuthorizeView>
+                    <Authorized>
+                        @if (!hasVoted)
+                        {
+                            <div class="card p-3 mt-3 bg-light border-success">
+                                <h6>Twoja ocena (1-10):</h6>
+                                <div class="d-flex gap-2">
+                                    <input type="number" @bind="userVote" min="1" max="10" class="form-control" style="width: 80px;" />
+                                    <button class="btn btn-success" @onclick="RateMovie">Wyślij głos</button>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-success mt-3 shadow-sm">
+                                <i class="bi bi-check-circle"></i> Dziękujemy! Już oddałeś głos na ten film.
+                            </div>
+                        }
+                    </Authorized>
+                    <NotAuthorized>
+                        <div class="alert alert-warning mt-3">
+                            Zaloguj się, aby móc oceniać filmy.
+                        </div>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </div>
+        </div>
+
+
+
+    </div>
+}
+
+@code {
+    private Movie? movie;
+    private int userVote = 5;
+    private bool hasVoted = false;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        movie = await context.Movie.FirstOrDefaultAsync(m => m.Id == Id);
+    }
+
+    private string GetEmbedUrl(string url)
+    {
+        if (string.IsNullOrEmpty(url)) return "";
+
+        try
+        {
+            if (url.Contains("watch?v="))
+            {
+                var videoId = url.Split("v=")[1].Split("&")[0];
+                return $"https://www.youtube.com/embed/{videoId}";
+            }
+            if (url.Contains("youtu.be/"))
+            {
+                var videoId = url.Split("/").Last().Split("?")[0];
+                return $"https://www.youtube.com/embed/{videoId}";
+            }
+            if (url.Contains("youtube.com/embed/"))
+            {
+                return url;
+            }
+        }
+        catch
+        {
+            return "";
+        }
+
+        return url;
+    }
+
+    private async Task RateMovie()
+    {
+        if (movie is not null && !hasVoted)
+        {
+            using var context = DbFactory.CreateDbContext();
+
+            float currentRate = movie.Rate ?? 0;
+            int currentVotes = movie.VoteCount;
+
+            movie.Rate = ((currentRate * currentVotes) + userVote) / (currentVotes + 1);
+            movie.VoteCount++;
+
+            context.Movie.Update(movie);
+            await context.SaveChangesAsync();
+
+            hasVoted = true;
+            StateHasChanged();
+        }
+    }
+}
